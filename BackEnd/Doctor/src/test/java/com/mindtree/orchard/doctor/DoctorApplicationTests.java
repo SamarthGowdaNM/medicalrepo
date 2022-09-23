@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,8 @@ import com.mindtree.orchard.doctorinterface.DoctorInterface;
 
 @SpringBootTest
 class DoctorApplicationTests {
+	
+	
 	@Autowired
 	private DoctorInterface docserv;
 	
@@ -25,6 +28,7 @@ class DoctorApplicationTests {
 	public void getAllDoctors() {
 		List<DoctorData> docs=docserv.getAllDoctors();
 		assertThat(docs).size().isGreaterThan(0);
+		
 		
 	}
 	
@@ -36,8 +40,19 @@ class DoctorApplicationTests {
 	
 	@Test
 	public void postDoctor() {
-		DoctorData doc=new DoctorData("fahim", 23, "male", "radiologist");
+		
+		DoctorData doc=new DoctorData("aim", 23, "male", "radiologist");
 		docserv.addDoctor(doc);
+		assertEquals("radiologist", docserv.getDoctor(20).getDocSpecialization());
+	}
+	
+	@Test
+	public void newDoctor() {
+		DoctorData d=new DoctorData("harish", 23, "male", "ghjhgfd");
+		docserv.addDoctor(d);
+		assertEquals(23, docserv.getDoctor(22).getDocAge());
+	
+		
 	}
 	
 	

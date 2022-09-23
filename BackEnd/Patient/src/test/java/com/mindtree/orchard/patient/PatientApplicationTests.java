@@ -30,6 +30,13 @@ class PatientApplicationTests {
 	@Test
 	public void postpatient() {
 		Patient p=new Patient(new Date(2002, 02, 22), 123,3, "sohail", 2, "dfghjhv");
+		patinf.addPatient(p);
+		assertEquals(2, patinf.getPatient(123).getDocvisited());
+	}
+	@Test
+	public void getPatientsinfo() {
+		Patient r=patinf.getPatient(123);
+		assertEquals(123, r.getPatid());
 	}
 
 }
